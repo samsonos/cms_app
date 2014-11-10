@@ -33,15 +33,10 @@ class App extends CompressableExternalModule
     public static function find($id, & $app = null)
     {
         // Clear var as someone can pass anything in it
-        $app = null;
-
-        // If "normal" identifier is passed
-        if (isset($id{0})) {
-            // Try to find loaded system module
-            $app = m($id);
-        }
-
-        return $app != null;
+        $app = & \samson\core\Module::$instances[$id];
+        
+        // Return if module exists
+        return isset($app);
     }
 
     /** Application name */
