@@ -33,7 +33,7 @@ class App extends CompressableExternalModule
     public static function find($id, & $app = null)
     {
         // Clear var as someone can pass anything in it
-        $app = \samson\core\Module::$instances[$id];
+        $app = isset(\samson\core\Module::$instances[$id]) ? \samson\core\Module::$instances[$id] : null;
 
         // Return if module exists
         return isset($app);
