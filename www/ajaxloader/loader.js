@@ -1,5 +1,5 @@
 /** Loader initing routine */
-var Loader = function( parentBlock )
+var Loader = function( parentBlock, position )
 {	
 	// Generate loader id
 	this.id = 'canvas-loader_'+Math.ceil( 10000 * Math.random());
@@ -47,9 +47,21 @@ var Loader = function( parentBlock )
 		
 		if( showBG ) loaderDOM.css('background-color','rgba(0,0,0,0.6)');
 		
-		loaderDOM.css('position','fixed');
-		loaderDOM.left( of.left + 1 );
-		loaderDOM.top( of.top + 1 );
+                if (!position) {
+                        position = {
+                                type: 'fixed',
+                                left: of.left + 1,
+                                top: of.top + 1
+                        }
+                } else {
+                        position.type = (position.type) ? position.type : 'fixed';
+                        position.left = (position.left) ? position.left : of.left + 1;
+                        position.top = (position.top) ? position.top : of.top + 1;
+                }
+
+		loaderDOM.css('position', position.type);
+		loaderDOM.left(position.left);
+		loaderDOM.top(position.top);
 		loaderDOM.width( w );
 		loaderDOM.height( h );		
 		
