@@ -45,6 +45,9 @@ class App extends CompressableExternalModule
     /** Flag for showing CMSApplication in main menu */
     public $hide = false;
 
+    /** @var string Application menu icon */
+    public $icon = 'fa-book';
+
     /** Constructor */
     public function __construct($path = null, $vid = null, $resources = null)
     {
