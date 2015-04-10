@@ -46,7 +46,7 @@ class App extends CompressableExternalModule
     public $hide = false;
 
     /** @var string Application menu icon */
-    public $icon = 'fa-book';
+    public $icon = 'book';
 
     /** Constructor */
     public function __construct($path = null, $vid = null, $resources = null)
