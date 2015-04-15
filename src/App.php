@@ -59,13 +59,19 @@ class App extends CompressableExternalModule
         parent::__construct($path, $vid, $resources);
     }
 
-    /** Generic handler for rendering SamsonCMS application "Main page" */
+    /**
+     * Generic handler for rendering SamsonCMS application "Main page"
+     * @deprecated Subscribe to samsoncms/template event
+     */
     public function main()
     {
         return false;
     }
 
-    /** Generic handler for rendering SamsonCMS application "Sub-menu" */
+    /**
+     * Generic handler for rendering SamsonCMS application "Sub-menu"
+     * @deprecated Subscribe to samsoncms/template event
+     */
     public function submenu()
     {
         return false;
