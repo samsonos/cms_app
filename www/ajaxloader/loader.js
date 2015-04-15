@@ -16,10 +16,12 @@ var Loader = function( parentBlock, position )
 		if(loaderDOM) loaderDOM.hide();
 		
 		// If no parent block - set body
-		if( !parentBlock ) 
-		{
-			loaderDOM.addClass( '__fullscreen' );
-			parentBlock = s(document.body);
+		if(!parentBlock) {
+            // Do not create global loader more than once
+            if (!s('body > .__loader_bg').length) {
+                loaderDOM.addClass('__fullscreen');
+                parentBlock = s(document.body);
+            }
 		}
 	
 		// Append loader to document
