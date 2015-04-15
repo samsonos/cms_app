@@ -21,11 +21,12 @@ var Loader = function( parentBlock, position )
             if (!s('body > .__loader_bg').length) {
                 loaderDOM.addClass('__fullscreen');
                 parentBlock = s(document.body);
+                // Append loader to document
+                parentBlock.append( loaderDOM );
             }
-		}
-	
-		// Append loader to document
-		parentBlock.append( loaderDOM );	
+		} else { // Append loader to parent DOM element
+            parentBlock.append( loaderDOM );
+        }
 		
 		// Create canvas loader
 		cl = new CanvasLoader( this.id );
