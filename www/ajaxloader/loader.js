@@ -11,22 +11,19 @@ var Loader = function( parentBlock, position )
 	var cl = null;
 	
 	/** Initialize loader */
-	this.init = function( parentBlock )
-	{		
+	this.init = function(parentBlock)	{
 		if(loaderDOM) loaderDOM.hide();
-		
+
 		// If no parent block - set body
-		if(!parentBlock) {
-            // Do not create global loader more than once
-            if (!s('body > .__loader_bg').length) {
-                loaderDOM.addClass('__fullscreen');
-                parentBlock = s(document.body);
-                // Append loader to document
-                parentBlock.append( loaderDOM );
-            }
-		} else { // Append loader to parent DOM element
-            parentBlock.append( loaderDOM );
-        }
+		if (!parentBlock) {
+            // Remove all full screen loaders
+            s('body > .__loader_bg').remove();
+            loaderDOM.addClass('__fullscreen');
+            parentBlock = s(document.body);
+		}
+
+        // Append loader to parent DOM element
+        this.parentBlock = parentBlock.append( loaderDOM );
 		
 		// Create canvas loader
 		cl = new CanvasLoader( this.id );
@@ -40,13 +37,12 @@ var Loader = function( parentBlock, position )
 	};
 	
 	/** Show loader */
-	this.show = function( text, showBG )
-	{				
+	this.show = function(text, showBG) {
+
 		// Get parentBlock position
-		var of = parentBlock.offset(); 
-			
-		var w = parentBlock.width();
-		var h = parentBlock.height();
+		var of = this.parentBlock.offset();
+		var w = this.parentBlock.width();
+		var h = this.parentBlock.height();
 		
 		if( showBG ) loaderDOM.css('background-color','rgba(0,0,0,0.6)');
 		
@@ -73,7 +69,7 @@ var Loader = function( parentBlock, position )
 		
 		// Calculate loader image height depending on parent block size
 		var mHeight = 125;		
-		if( mHeight > parentBlock.height() ) mHeight = parentBlock.height() * 0.9;		
+		if( mHeight > this.parentBlock.height() ) mHeight = this.parentBlock.height() * 0.9;
 			
 		// Set loader diameter
 		cl.setDiameter( mHeight );
@@ -100,9 +96,3 @@ var Loader = function( parentBlock, position )
 	/** Init loader */
 	this.init( parentBlock );
 };
-
-// Create global loader instance
-//var loader = new Loader();
-
-// Init loader on DOM loaded
-//s(document).pageInit(function(){ new Loader(); });
