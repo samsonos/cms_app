@@ -1,3 +1,0 @@
-<div class="table2-row table2-header-row">
-    <?php iv('cols')?>
-</div>
