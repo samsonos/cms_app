@@ -4,10 +4,11 @@ namespace samson\cms;
 use samson\core\CompressableExternalModule;
 
 /**
- * SamsonCMS external compressable application for integrating
+ * SamsonCMS external compressible application for integrating
  * @author Vitaly Iegorov <egorov@samsonos.com>
+ * @deprecated Use new samsoncms\Application instead
  */
-class App extends CompressableExternalModule
+class App extends \samsoncms\Application
 {
     /**
      * Collection of loaded SamsonCMS applications
@@ -38,15 +39,6 @@ class App extends CompressableExternalModule
         // Return if module exists
         return isset($app);
     }
-
-    /** Application name */
-    public $name;
-
-    /** Flag for showing CMSApplication in main menu */
-    public $hide = false;
-
-    /** @var string Application menu icon */
-    public $icon = 'book';
 
     /** Constructor */
     public function __construct($path = null, $vid = null, $resources = null)
