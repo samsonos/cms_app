@@ -3,7 +3,6 @@
     "description":"SamsonCMS generic application",
     "author":"Vitaly Iegorov <egorov@samsonos.com>",
     "require":{
-      "samsonframework/base":"*",
       "samsonframework/collection":"*"
     },
     "license":"Open Software License (OSL) v 3.0",
