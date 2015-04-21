@@ -59,6 +59,21 @@ class Collection extends \samsonos\cms\collection\Generic
     }
 
     /**
+     * Render products collection block
+     * @param string $prefix Prefix for view variables
+     * @param array $restricted Collection of ignored keys
+     * @return array Collection key => value
+     */
+    public function toView($prefix = null, array $restricted = array())
+    {
+        // Render pager and collection
+        return array(
+            $prefix.'html' => $this->render(),
+            $prefix.'pager' => $this->pager->toHTML()
+        );
+    }
+
+    /**
      * Add external identifier filter handler
      * @param callback $handler
      * @param array $params
