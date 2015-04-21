@@ -56,23 +56,6 @@ class Collection extends \samsonos\cms\collection\Generic
     }
 
     /**
-     * Pager id handler, will change input entity identifier collection to
-     * match exact page.
-     * @param array Array of material identifiers
-     */
-    protected function pagerIDInjection(& $entityIDs)
-    {
-        // Recount pager
-        $this->pager->update(sizeof($entityIDs));
-
-        // Apply Sorter before cutting array into  pages
-        //$this->applySorter($entityIDs);
-
-        // Cut only needed entity identifiers from array
-        $entityIDs = array_slice($entityIDs, $this->pager->start, $this->pager->end);
-    }
-
-    /**
      * Add external identifier filter handler
      * @param callback $handler
      * @param array $params
@@ -128,10 +111,14 @@ class Collection extends \samsonos\cms\collection\Generic
             $this->callHandlers($this->idHandlers, array(&$this->entityIDs));
         }
 
-        // Secondly call sorting handlers
+        // Apply Sorter before cutting array into  pages
+        //$this->applySorter($entityIDs);
 
-        // Call paging
-        $this->pagerIDInjection($this->entityIDs);
+        // Recount pager
+        $this->pager->update(sizeof($this->entityIDs));
+
+        // Cut only needed entity identifiers from array
+        $this->entityIDs = array_slice($this->entityIDs, $this->pager->start, $this->pager->end);
 
         // Finally get all entity objects by their identifiers
         if (
