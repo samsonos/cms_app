@@ -66,10 +66,8 @@ class Collection extends \samsonos\cms\collection\Generic
      */
     public function handler($handler, array $params = array())
     {
-        if (is_callable($handler)) {
-            // Add callback with parameters to array
-            $this->idHandlers[] = array($handler, $params);
-        }
+        // Add callback with parameters to array
+        $this->idHandlers[] = array($handler, $params);
 
         return $this;
     }
