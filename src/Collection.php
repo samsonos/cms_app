@@ -41,6 +41,9 @@ class Collection extends \samsonos\cms\collection\Generic
     /** @var string Entity primary field name */
     protected $entityPrimaryField;
 
+    /** @var array Sorter parameters collection */
+    protected $sorter = array();
+
     /**
      * Generic collection constructor
      * @param RenderInterface $renderer View render object
@@ -59,12 +62,29 @@ class Collection extends \samsonos\cms\collection\Generic
      * Add external identifier filter handler
      * @param callback $handler
      * @param array $params
-     * @return self Chaining
+     * @return $this Chaining
      */
     public function handler($handler, array $params = array())
     {
         // Add callback with parameters to array
         $this->idHandlers[] = array($handler, $params);
+
+        return $this;
+    }
+
+    /**
+     * Set collection sorter parameters
+     * @param string $field Entity field name
+     * @param string $destination ASC|DESC
+     * @return $this Chaining
+     */
+    public function sorter($field, $destination = 'ASC')
+    {
+        // TODO: add entity field checking
+        $this->sorter[] = array(
+            $field,
+            $destination
+        );
 
         return $this;
     }
@@ -111,8 +131,12 @@ class Collection extends \samsonos\cms\collection\Generic
             $this->callHandlers($this->idHandlers, array(&$this->entityIDs));
         }
 
-        // Apply Sorter before cutting array into  pages
-        //$this->applySorter($entityIDs);
+        // Apply all sorter to request before cutting array into  pages
+        if (sizeof($this->sorter)) {
+            foreach ($this->sorter as $sorter) {
+                $this->query->order_by($sorter[0], $sorter[1]);
+            }
+        }
 
         // Recount pager
         $this->pager->update(sizeof($this->entityIDs));
