@@ -24,10 +24,10 @@ class Collection extends \samsonos\cms\collection\Generic
     protected $indexView = 'www/collection/index';
 
     /** @var string Item view file */
-    protected $itemView = 'www/collection/item';
+    protected $itemView = 'www/collection/item/index';
 
     /** @var string Empty view file */
-    protected $emptyView = 'www/collection/empty';
+    protected $emptyView = 'www/collection/item/empty';
 
     /** @var  PagerInterface Pager object */
     protected $pager;
