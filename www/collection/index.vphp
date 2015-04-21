@@ -1,0 +1,8 @@
+<div class="table2">
+    <div class="table2-header">
+        <?php iv('header') ?>
+    </div>
+    <div class="table2-body">
+        <?php iv('body') ?>
+    </div>
+</div>

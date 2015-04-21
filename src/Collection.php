@@ -20,5 +20,42 @@ use samsonframework\orm\QueryInterface;
  */
 class Collection extends \samsonframework\collection\Paged
 {
+    /**
+     * Generic collection constructor
+     * @param RenderInterface $renderer View render object
+     * @param QueryInterface $query Query object
+     */
+    public function __construct(RenderInterface $renderer, QueryInterface $query, PagerInterface $pager)
+    {
+        // Call parent initialization
+        parent::__construct($renderer, $query, $pager);
 
+
+    }
+
+    /**
+     * Overload to render dynamically entity columns
+     * @param string $items Rendered items
+     * @return string Rendered collection block
+     */
+    public function renderIndex($items)
+    {
+        return $this->renderer
+            ->view($this->indexView)
+            ->set('items', $items)
+            ->output();
+    }
+
+    /**
+     * Render collection item block
+     * @param mixed $item Item to render
+     * @return string Rendered collection item block
+     */
+    public function renderItem($item)
+    {
+        return $this->renderer
+            ->view($this->itemView)
+            ->set($item, 'item')
+            ->output();
+    }
 }

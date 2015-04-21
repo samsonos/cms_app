@@ -1,0 +1,3 @@
+<div class="table2-row">
+    <?php iv('cols')?>
+</div>

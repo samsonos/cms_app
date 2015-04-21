@@ -1,0 +1,5 @@
+<div class="table2-col <?php iv('class')?>">
+    <span class="cell-inner">
+        <?php v('item_id');?>
+    </span>
+</div>
