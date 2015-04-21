@@ -18,7 +18,7 @@ use samsonframework\orm\QueryInterface;
  * @package samsoncms
  * @author Vitaly Iegorov <egorov@samsonos.com>
  */
-class Collection extends \samsonframework\collection\Generic
+class Collection extends \samsonframework\collection\Paged
 {
 
 }
