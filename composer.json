@@ -4,15 +4,14 @@
     "author":"Vitaly Iegorov <egorov@samsonos.com>",
     "require":{
         "samsonos/php_core":"*",
-        "samsonos/php_activerecord":"*",
         "samsonos/cms_api":"*"
     },
     "license":"Open Software License (OSL) v 3.0",
     "homepage":"http://samsonos.com/",
     "autoload": {
         "classmap": ["src/"],
-        "psr-0": {
-            "samson\\cms": "src/"
+        "psr-4": {
+            "samsoncms\\": "src/"
         }
     }
 }
